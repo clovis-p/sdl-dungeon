@@ -64,6 +64,7 @@ func (g *Game) Move(d moveDirection) error {
 }
 
 func (g Game) DrawGame(ren *sdl.Renderer) string {
+	ren.SetDrawColor(0, 0, 0, 255)
 	ren.Clear()
 	output := drawMap(g.currentMap.Tiles, g.player, ren)
 	ren.Present()
