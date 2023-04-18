@@ -35,7 +35,7 @@ func drawMap(floor [][]tile.Tile, p Player, ren *sdl.Renderer) string {
 			if x == p.GetX() && y == p.GetY() {
 				drawn += "@"
 				ren.SetDrawColor(255, 0, 0, 255)
-				ren.DrawPoint(int32(x), int32(y))
+				ren.DrawPoint(int32(y)+1, int32(x)+1)
 			} else {
 				drawn += tile.DrawTile(ren, x, y)
 			}
