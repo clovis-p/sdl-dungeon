@@ -38,10 +38,10 @@ func (t Tile) DrawTile(ren *sdl.Renderer, x int, y int) string {
 	if t.lit {
 		if t.tileType == "FLOOR" {
 			ren.SetDrawColor(0, 0, 40, 255)
-			ren.DrawPoint(int32(x), int32(y))
+			ren.DrawPoint(int32(y), int32(x))
 		} else if t.tileType == "WALL" {
 			ren.SetDrawColor(0, 0, 255, 255)
-			ren.DrawPoint(int32(x), int32(y))
+			ren.DrawPoint(int32(y), int32(x))
 		}
 	}
 
