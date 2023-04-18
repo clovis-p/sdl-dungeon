@@ -5,12 +5,18 @@ import (
 
 	"github.com/jroimartin/gocui"
 	"github.com/notarock/dungeon/pkg/dungeon"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 var game dungeon.Game
 
+var win *sdl.Window
+var ren *sdl.Renderer
+
 func InitGame() {
 	var err error
+
+	sdl.Init(sdl.INIT_EVERYTHING)
 
 	game, err = dungeon.NewGame()
 
@@ -19,6 +25,18 @@ func InitGame() {
 		log.Panicln(err)
 	}
 	defer g.Close()
+
+	win, err = sdl.CreateWindow("Dungeon", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, 102, 40, sdl.WINDOW_SHOWN)
+	if err != nil {
+		log.Panicln(err)
+	}
+	defer win.Destroy()
+
+	ren, err = sdl.CreateRenderer(win, -1, 0)
+	if err != nil {
+		log.Panicln(err)
+	}
+	defer ren.Destroy()
 
 	g.SetManagerFunc(layout)
 
@@ -90,5 +108,5 @@ func quit(g *gocui.Gui, v *gocui.View) error {
 
 func redrawMap(gv *gocui.View) {
 	gv.Clear()
-	gv.Write([]byte(game.DrawGame()))
+	gv.Write([]byte(game.DrawGame(ren)))
 }

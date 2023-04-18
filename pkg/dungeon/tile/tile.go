@@ -1,5 +1,7 @@
 package tile
 
+import "github.com/veandco/go-sdl2/sdl"
+
 const IN_RANGE_MODIFIER = "_IN_RANGE"
 
 type Tile struct {
@@ -17,7 +19,7 @@ func (t Tile) IsWalkable() bool {
 	return t.walkable
 }
 
-func (t Tile) DrawTile() string {
+func (t Tile) DrawTile(ren *sdl.Renderer, x int, y int) string {
 	if !t.Visible() {
 		return " "
 	}
@@ -32,6 +34,16 @@ func (t Tile) DrawTile() string {
 	}
 
 	tile, _ := TILE_CHARACTERS_MAP[t.tileType]
+
+	if t.lit {
+		if t.tileType == "FLOOR" {
+			ren.SetDrawColor(0, 0, 40, 255)
+			ren.DrawPoint(int32(x), int32(y))
+		} else if t.tileType == "WALL" {
+			ren.SetDrawColor(0, 0, 255, 255)
+			ren.DrawPoint(int32(x), int32(y))
+		}
+	}
 
 	return tile
 }

@@ -4,6 +4,7 @@ import (
 	"math"
 
 	"github.com/notarock/dungeon/pkg/dungeon/tile"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 const (
@@ -27,14 +28,16 @@ func (m *Map) GetTile(x, y int) (tile.Tile, error) {
 	return lol, nil
 }
 
-func drawMap(floor [][]tile.Tile, p Player) string {
+func drawMap(floor [][]tile.Tile, p Player, ren *sdl.Renderer) string {
 	var drawn string
 	for x, row := range floor {
 		for y, tile := range row {
 			if x == p.GetX() && y == p.GetY() {
 				drawn += "@"
+				ren.SetDrawColor(255, 0, 0, 255)
+				ren.DrawPoint(int32(x), int32(y))
 			} else {
-				drawn += tile.DrawTile()
+				drawn += tile.DrawTile(ren, x, y)
 			}
 		}
 		drawn += "\n"

@@ -2,6 +2,7 @@ package dungeon
 
 import (
 	"fmt"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 type Game struct {
@@ -62,8 +63,10 @@ func (g *Game) Move(d moveDirection) error {
 	return nil
 }
 
-func (g Game) DrawGame() string {
-	output := drawMap(g.currentMap.Tiles, g.player)
+func (g Game) DrawGame(ren *sdl.Renderer) string {
+	ren.Clear()
+	output := drawMap(g.currentMap.Tiles, g.player, ren)
+	ren.Present()
 
 	return output
 }
