@@ -37,20 +37,17 @@ func (t Tile) DrawTile(ren *sdl.Renderer, x int, y int) string {
 
 	var tileRect sdl.Rect
 
+	tileRect.X = int32(y) * 8
+	tileRect.Y = int32(x) * 8
+	tileRect.W = 8
+	tileRect.H = 8
+
 	if t.lit {
 		if t.tileType == "FLOOR" {
 			ren.SetDrawColor(0, 0, 100, 255)
-			tileRect.X = (int32(y)) * 8
-			tileRect.Y = (int32(x)) * 8
-			tileRect.W = 8
-			tileRect.H = 8
 			ren.DrawRect(&tileRect)
 		} else if t.tileType == "WALL" {
 			ren.SetDrawColor(0, 0, 255, 255)
-			tileRect.X = (int32(y)) * 8
-			tileRect.Y = (int32(x)) * 8
-			tileRect.W = 8
-			tileRect.H = 8
 			ren.DrawRect(&tileRect)
 		}
 	}

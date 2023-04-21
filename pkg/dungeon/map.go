@@ -36,8 +36,8 @@ func drawMap(floor [][]tile.Tile, p Player, ren *sdl.Renderer) string {
 			if x == p.GetX() && y == p.GetY() {
 				drawn += "@"
 				ren.SetDrawColor(255, 0, 0, 255)
-				tileRect.X = (int32(y)) * 8
-				tileRect.Y = (int32(x)) * 8
+				tileRect.X = int32(y) * 8
+				tileRect.Y = int32(x) * 8
 				tileRect.W = 8
 				tileRect.H = 8
 				ren.DrawRect(&tileRect)
