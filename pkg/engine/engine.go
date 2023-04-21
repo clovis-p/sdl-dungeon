@@ -26,7 +26,7 @@ func InitGame() {
 	}
 	defer g.Close()
 
-	win, err = sdl.CreateWindow("Dungeon", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, 102, 40, sdl.WINDOW_SHOWN)
+	win, err = sdl.CreateWindow("Dungeon", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, 100*8, 40*8, sdl.WINDOW_SHOWN)
 	if err != nil {
 		log.Panicln(err)
 	}

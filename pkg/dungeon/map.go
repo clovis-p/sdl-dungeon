@@ -30,12 +30,17 @@ func (m *Map) GetTile(x, y int) (tile.Tile, error) {
 
 func drawMap(floor [][]tile.Tile, p Player, ren *sdl.Renderer) string {
 	var drawn string
+	var tileRect sdl.Rect
 	for x, row := range floor {
 		for y, tile := range row {
 			if x == p.GetX() && y == p.GetY() {
 				drawn += "@"
 				ren.SetDrawColor(255, 0, 0, 255)
-				ren.DrawPoint(int32(y)+1, int32(x)+1)
+				tileRect.X = (int32(y)) * 8
+				tileRect.Y = (int32(x)) * 8
+				tileRect.W = 8
+				tileRect.H = 8
+				ren.DrawRect(&tileRect)
 			} else {
 				drawn += tile.DrawTile(ren, x, y)
 			}
