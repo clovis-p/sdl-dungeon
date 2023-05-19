@@ -8,6 +8,10 @@ import (
 	"github.com/veandco/go-sdl2/sdl"
 )
 
+const (
+	GRAPHICS_SCALE = 10
+)
+
 var game dungeon.Game
 
 var win *sdl.Window
@@ -26,7 +30,7 @@ func InitGame() {
 	}
 	defer g.Close()
 
-	win, err = sdl.CreateWindow("Dungeon", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, 100*8, 40*8, sdl.WINDOW_SHOWN)
+	win, err = sdl.CreateWindow("Dungeon", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, 100*GRAPHICS_SCALE, 40*GRAPHICS_SCALE, sdl.WINDOW_SHOWN)
 	if err != nil {
 		log.Panicln(err)
 	}

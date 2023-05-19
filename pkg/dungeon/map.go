@@ -10,6 +10,7 @@ import (
 const (
 	TILE_PLAYER         = "@"
 	PLAYER_VISION_RANGE = 6
+	GRAPHICS_SCALE      = 10
 )
 
 // GenerateMap create a bunch of rooms and stick them together to create a dungeon
@@ -36,10 +37,10 @@ func drawMap(floor [][]tile.Tile, p Player, ren *sdl.Renderer) string {
 			if x == p.GetX() && y == p.GetY() {
 				drawn += "@"
 				ren.SetDrawColor(255, 0, 0, 255)
-				tileRect.X = int32(y) * 8
-				tileRect.Y = int32(x) * 8
-				tileRect.W = 8
-				tileRect.H = 8
+				tileRect.X = int32(y) * GRAPHICS_SCALE
+				tileRect.Y = int32(x) * GRAPHICS_SCALE
+				tileRect.W = GRAPHICS_SCALE
+				tileRect.H = GRAPHICS_SCALE
 				ren.DrawRect(&tileRect)
 			} else {
 				drawn += tile.DrawTile(ren, x, y)
